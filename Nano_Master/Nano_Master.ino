@@ -182,8 +182,9 @@ void loop(){
   data["id"] = StationID;
   data["rain"] = rain_count * measurement_value;
 
-  if(millis() - prev_led >= 1500){
-    prev_led = millis();
+  int cur_mil = millis();
+  if(cur_mil - prev_led >= 500){
+    prev_led = cur_mil;
     digitalWrite(LEDStatus, !digitalRead(LEDStatus));
   }
   
@@ -561,13 +562,13 @@ void showLOGO(){
 }
 
 void showOLED(){
-  /*if(digitalRead(Button1Pin) && canpush){
+  if(digitalRead(Button1Pin) && canpush){
     selecter++;
     selecter %= 4;
     canpush = false;
   }else{
     canpush = true;
-  }*/
+  }
   
   switch(selecter){
     case 0: 

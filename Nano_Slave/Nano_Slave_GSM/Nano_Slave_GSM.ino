@@ -82,7 +82,7 @@ void setup(){
 int count = 0;
 int prev = 0;
 void loop(){
-  if(millis() - prev >= 2500){
+  if(millis() - prev >= 2000){
     prev = millis();
     digitalWrite(LEDStatus, !digitalRead(LEDStatus));
   }
