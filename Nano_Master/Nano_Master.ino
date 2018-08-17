@@ -3,7 +3,7 @@
 /////////////////////                      STATION  ID                      /////////////////////
 /////////////////////                                                       /////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
-String StationID = "5"; //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Station ID
+String StationID = "6"; //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Station ID
 String StationStatus = "ON";
 
 int Button1Pin = 12;      //Button1
@@ -562,13 +562,13 @@ void showLOGO(){
 }
 
 void showOLED(){
-  if(digitalRead(Button1Pin) && canpush){
+  /*if(digitalRead(Button1Pin) && canpush){
     selecter++;
     selecter %= 4;
     canpush = false;
   }else{
     canpush = true;
-  }
+  }*/
   
   switch(selecter){
     case 0: 
