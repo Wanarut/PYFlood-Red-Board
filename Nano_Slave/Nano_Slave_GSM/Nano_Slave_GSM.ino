@@ -80,12 +80,12 @@ void setup(){
 /////////////////////                                                       /////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
 int count = 0;
+int prev = 0;
 void loop(){
-  if(count == 16383){
+  if(millis() - prev >= 2500){
+    prev = millis();
     digitalWrite(LEDStatus, !digitalRead(LEDStatus));
-    count = 0;
   }
-  count++;
   
   if(call.WaitRing()){
     Serial.print("Ring: ");
