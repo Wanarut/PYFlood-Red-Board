@@ -79,11 +79,11 @@ void setup(){
 /////////////////////                         LOOPs                         /////////////////////
 /////////////////////                                                       /////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
-int count = 0;
-int prev = 0;
+int prev_led = 0;
 void loop(){
-  if(millis() - prev >= 2000){
-    prev = millis();
+  int cur_mil = millis();
+  if(cur_mil - prev_led >= 2000){
+    prev_led = cur_mil;
     digitalWrite(LEDStatus, !digitalRead(LEDStatus));
   }
   
