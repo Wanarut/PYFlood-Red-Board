@@ -79,9 +79,9 @@ int PIN_A_BATTERY = A5;   //Analog amp value
 int LEDStatus = 6;        //LED Status
 int PIN_RAIN = 19;        //Rain Boolean value
 
-int Port0 = 2;    //4 bits state
+int Port0 = 2;    //2 bits state
 int Port1 = 3;
-int Port2 = 5;
+int Port2 = 5;    //reset state
 
 //////////////////////////////////////////////////////////
 ///////////                                    ///////////
@@ -177,10 +177,15 @@ bool flag = true;
 bool canReset = true;
 bool canpush = true;
 int selecter = 0;
+int prev_led = 0;
 void loop(){
   data["id"] = StationID;
   data["rain"] = rain_count * measurement_value;
-  digitalWrite(LEDStatus, !digitalRead(LEDStatus));
+
+  if(millis() - prev_led >= 1500){
+    prev_led = millis();
+    digitalWrite(LEDStatus, !digitalRead(LEDStatus));
+  }
   
   if(digitalRead(Port2) && canReset){
     writeSDCardFile(file_name, createEventLog("Slave Reset!"));
@@ -556,13 +561,13 @@ void showLOGO(){
 }
 
 void showOLED(){
-  if(digitalRead(Button1Pin) && canpush){
+  /*if(digitalRead(Button1Pin) && canpush){
     selecter++;
     selecter %= 4;
     canpush = false;
   }else{
     canpush = true;
-  }
+  }*/
   
   switch(selecter){
     case 0: 
